@@ -1,10 +1,6 @@
 package com.example.demo.account;
 
-import com.example.demo.utils.ResponseFactory;
-import com.example.demo.utils.APIResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 @Service
