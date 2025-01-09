@@ -8,21 +8,26 @@ import com.chatterbox.api.utils.SignUpRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "api/v1/auth")
 public class AuthController {
     private final AuthService authService;
     private final ResponseFactory responseFactory;
+    private final BCryptPasswordEncoder encoder;
 
     @Autowired
-    public AuthController(AuthService authService, ResponseFactory responseFactory) {
+    public AuthController(AuthService authService, ResponseFactory responseFactory, BCryptPasswordEncoder encoder) {
         this.authService = authService;
         this.responseFactory = responseFactory;
+        this.encoder = encoder;
+    }
+
+    @GetMapping("/resource")
+    public String resource(){
+        return "resource";
     }
 
     @PostMapping("/signup")
@@ -34,7 +39,7 @@ public class AuthController {
                     request.getUsername(),
                     request.getFullName(),
                     request.getEmail(),
-                    request.getPassword()
+                    encoder.encode(request.getPassword())
             );
             response = responseFactory.getResponse(true);
 
