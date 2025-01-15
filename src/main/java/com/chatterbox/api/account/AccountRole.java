@@ -1,5 +1,5 @@
 package com.chatterbox.api.account;
 
 public enum AccountRole {
-    USER
+    ROLE_USER
 }

@@ -114,7 +114,7 @@ public class Account implements UserDetails {
         this.password = password;
         this.fullName = fullName;
         this.enabled = true;
-        this.role = AccountRole.USER;
+        this.role = AccountRole.ROLE_USER;
         this.createdAt = new Date().getTime();
     }
 

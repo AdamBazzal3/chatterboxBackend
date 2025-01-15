@@ -1,8 +1,12 @@
-package com.chatterbox.api.utils;
+package com.chatterbox.api.response;
 
 public class APIResponse {
-    private boolean isSuccess;
+    private boolean isSuccess = false;
     private String message;
+
+    public APIResponse(){
+
+    }
 
     public APIResponse(boolean isSuccess, String message) {
         this.isSuccess = isSuccess;
@@ -12,6 +16,7 @@ public class APIResponse {
     public APIResponse(boolean isSuccess) {
         this.isSuccess = isSuccess;
     }
+
 
     public boolean isSuccess() {
         return isSuccess;
@@ -28,4 +33,5 @@ public class APIResponse {
     public void setMessage(String message) {
         this.message = message;
     }
+
 }

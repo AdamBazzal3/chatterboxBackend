@@ -2,7 +2,12 @@ package com.chatterbox.api.account;
 
 import com.chatterbox.api.exceptions.EmailAlreadyInUseException;
 import com.chatterbox.api.exceptions.UsernameAlreadyInUseException;
+import com.chatterbox.api.utils.LoginRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -11,18 +16,13 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class AuthService implements UserDetailsService {
+public class AccountService implements UserDetailsService {
     private final AccountRepository accountRepository;
     private final static String USER_NOT_FOUND = "username %s is not found.";
 
     @Autowired
-    public AuthService(AccountRepository accountRepository) {
+    public AccountService(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
-    }
-
-    public String Login(String username, String password){
-        //TODO: implement login mechanism
-        return "";
     }
 
     public void SignUp(String username, String fullName, String email, String password) throws Exception {
@@ -65,4 +65,6 @@ public class AuthService implements UserDetailsService {
         }
         return user;
     }
+
+
 }
